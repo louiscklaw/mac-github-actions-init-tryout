@@ -2,13 +2,7 @@ on: [push]
 
 jobs:
   hello_world_job:
-    runs-on: ubuntu-latest
-    name: A job to say hello
+    runs-on: macos-latest
+    name: mac-github-actions-init-tryout
     steps:
-    - uses: actions/checkout@v2
-    - id: foo
-      uses: louiscklaw/mac-github-actions-init-tryout@v4
-      with:
-        who-to-greet: 'Mona the Octocat'
-    - run: echo random-number ${{ steps.foo.outputs.random-number }}
-      shell: bash
+    - uses: louiscklaw/mac-github-actions-init-tryout@master

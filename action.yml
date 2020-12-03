@@ -1,22 +1,11 @@
-name: 'Hello World'
-description: 'Greet someone'
-inputs:
-  who-to-greet:  # id of input
-    description: 'Who to greet'
-    required: true
-    default: 'World'
-outputs:
-  random-number:
-    description: "Random number"
-    value: ${{ steps.random-number-generator.outputs.random-id }}
+name: 'init mac on github'
+description: 'initialize mac on github'
 
 runs:
   using: "composite"
   steps:
-    - run: echo Hello ${{ inputs.who-to-greet }}.
-      shell: bash
-    - id: random-number-generator
-      run: echo "::set-output name=random-id::$(echo $RANDOM)"
-      shell: bash
-    - run: ${{ github.action_path }}/goodbye.sh
+    - name: disbale unused services
+      run: |
+        launchctl unload -w /System/Library/LaunchAgents/com.apple.ReportCrash.plist
+        sudo launchctl unload -w /System/Library/LaunchDaemons/com.apple.ReportCrash.Root.plist
       shell: bash
